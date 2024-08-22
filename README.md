@@ -2,7 +2,7 @@
  
 In permutation ciphering, both in C++ and CUDA, we have a method that permutes a text based on a given permutation. This method is used for both encryption and decryption. In the sequential version, we iterate over each character and permute it, whereas in the parallel version, the i-th thread permutes the i-th character of the text. To demonstrate how the algorithm works, let's take an example.
 
-We need to permute the following text using the given permutation {2,1,0}. When permuting the letter 'F', we take the index 5 and map it to the range [1,2], resulting in the index 2. According to the given permutation, π(2) = 0. Now, we find the first index of the block to which index 5 belongs (i.e., the block [3,5]), and we add the value obtained, π(2) = 0, to this index to get the final index 3.
+We need to permute the following text using the given permutation {2,1,0}. When permuting the letter 'F', we take the index 5 and map it to the range [0,2], resulting in the index 2. According to the given permutation, π(2) = 0. Now, we find the first index of the block to which index 5 belongs (i.e., the block [3,5]), and we add the value obtained, π(2) = 0, to this index to get the final index 3.
 
 <div align = "center">
 	
