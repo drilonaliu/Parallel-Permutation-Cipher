@@ -4,6 +4,16 @@ In permutation ciphering, both in C++ and CUDA, we have a method that permutes a
 
 We need to permute the following text using the given permutation {2,1,0}. When permuting the letter 'F', we take the index 5 and map it to the range [1,2], resulting in the index 2. According to the given permutation, π(2) = 0. Now, we find the first index of the block to which index 5 belongs (i.e., the block [3,5]), and we add the value obtained, π(2) = 0, to this index to get the final index 3.
 
+| 0 | 1 | 2 | 3 | 4 | 5 |
+|---|---|---|---|---|---|
+| A | B | C | D | E | F |
+| C | B | A | F | E | D |
+
+$$5 \mod 3 = 2$$
+
+$$j = \lfloor {\frac{5}{3}} \rfloor \times 3 + \pi(2) = 1 \times 3 + 0 = 3$$
+
+
 
 ## Kernel
 ```
@@ -17,10 +27,15 @@ __global__ void applyPermutation(char* text, char* permutatedText, int* permutat
 }
 ```
 
-
 ## Padding 
 
 In permutation ciphering, padding is considered, which is necessary when the length of the text is not a multiple of the key length. In this case, a symbol is added to represent padding, for example, the symbol @. If we have the text "ABCDEFG," padding would occur as follows:
+
+| 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 |
+|---|---|---|---|---|---|---|---|---|
+| A | B | C | D | E | F | G | @ | @ |
+| C | B | A | F | E | D | @ | @ | F |
+
 
 ```
 string permutationEncrypt(string text, int* permutation, int permutationLength) {
